@@ -12,11 +12,11 @@ class CategoryController extends Controller
     //All Category
     public function index()
     {
-//        $categories = Category::latest()->paginate(3);
+        $categories = Category::latest()->paginate(3);
 //        $categories = DB::table('categories')->paginate(1);
 //        Query Builder Join
-        $categories = DB::table('categories')->join('users', 'categories.user_id', 'users.id')
-            ->select('categories.*', 'users.name')->paginate(3);
+//        $categories = DB::table('categories')->join('users', 'categories.user_id', 'users.id')
+//            ->select('categories.*', 'users.name')->paginate(3);
         return view('admin.category.index', compact('categories'));
     }
     //Add Category
@@ -48,5 +48,12 @@ class CategoryController extends Controller
 //        DB::table('categories')->insert($data);
 
         return redirect()->back()->with('success', 'Category inserted successful');
+    }
+
+// Edit Category
+    public function edit($id)
+    {
+        $categories = Category::findOrfail($id);
+        return view('admin.category.edit', compact('categories'));
     }
 }

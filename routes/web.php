@@ -25,6 +25,8 @@ Route::get('/', function () {
 Route::get('/category/all',[CategoryController::class, 'index'])->name('all_categories');
 //Add Category
 Route::post('/category/add',[CategoryController::class, 'store'])->name('store_category');
+//Edit Category
+Route::get('/category/edit/{id}',[CategoryController::class, 'edit']);
 //================================================
 
 Route::get('/contact',[ContactController::class, 'index']);
