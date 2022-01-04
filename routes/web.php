@@ -29,6 +29,12 @@ Route::post('/category/add',[CategoryController::class, 'store'])->name('store_c
 Route::get('/category/edit/{id}',[CategoryController::class, 'edit']);
 //Update Category
 Route::post('/category/update/{id}',[CategoryController::class, 'update']);
+//Soft Delete Category
+Route::get('/softDelete/category/{id}',[CategoryController::class, 'softDelete']);
+//Restore Category
+Route::get('/category/restore/{id}',[CategoryController::class, 'restore']);
+//Empty Category from database
+Route::get('/empty/category/{id}',[CategoryController::class, 'empty']);
 //================================================
 
 Route::get('/contact',[ContactController::class, 'index']);

@@ -13,11 +13,13 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = Category::latest()->paginate(3);
+        $trash_cat = Category::onlyTrashed()->latest()->paginate(3);
+
 //        $categories = DB::table('categories')->paginate(1);
 //        Query Builder Join
 //        $categories = DB::table('categories')->join('users', 'categories.user_id', 'users.id')
 //            ->select('categories.*', 'users.name')->paginate(3);
-        return view('admin.category.index', compact('categories'));
+        return view('admin.category.index', compact('categories','trash_cat'));
     }
     //Add Category
     public function store(Request $request)
@@ -73,4 +75,25 @@ class CategoryController extends Controller
 
         return redirect()->route('all_categories')->with('success', 'Category updated successfully');
     }
+
+
+    // Soft Delete
+    public function softDelete($id)
+    {
+        $delete= Category::find($id)->delete();
+        return redirect()->back()->with('success', 'Category soft deleted successfully');
+    }
+    // Restore Category
+    public function restore($id)
+    {
+        $delete= Category::withTrashed()->find($id)->restore();
+        return redirect()->back()->with('success', 'Category restore successfully');
+    }
+    // Empty Category from database
+    public function empty($id)
+    {
+        $delete= Category::onlyTrashed()->find($id)->forceDelete();
+        return redirect()->back()->with('success', 'Category Empty successfully from database');
+    }
+
 }
