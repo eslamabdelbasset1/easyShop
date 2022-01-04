@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ContactController;
 use App\Models\User;
@@ -20,7 +21,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 }); //->middleware('check')
-//Category Controller=========================
+
+//Category Route=================================
 //All Category
 Route::get('/category/all',[CategoryController::class, 'index'])->name('all_categories');
 //Add Category
@@ -36,6 +38,17 @@ Route::get('/category/restore/{id}',[CategoryController::class, 'restore']);
 //Empty Category from database
 Route::get('/empty/category/{id}',[CategoryController::class, 'empty']);
 //================================================
+
+//=========== Brand Route ====================
+//All Brand
+Route::get('/brand/all',[BrandController::class, 'index'])->name('all_brand');
+//Add Brand
+Route::post('/brand/add',[BrandController::class, 'store'])->name('store.brand');
+//Edit Brand
+Route::get('/brand/edit/{id}',[BrandController::class, 'edit']);
+//Update Brand
+Route::post('/brand/update/{id}',[BrandController::class, 'update']);
+//============================================
 
 Route::get('/contact',[ContactController::class, 'index']);
 
