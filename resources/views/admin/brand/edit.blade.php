@@ -14,10 +14,10 @@
                             Edit Brand
                         </div>
                         <div class="card-body">
-                            <form action="{{url('brand/update/'.$brands->id)}}" method="POST">
+                            <form action="{{url('brand/update/'.$brands->id)}}" method="POST"
+                                  enctype="multipart/form-data">
                                 @csrf
-                                <input type="hidden" name="old_image" class="form-control"
-                                       value="{{$brands->brand_image}}">
+                                <input type="hidden" name="old_image" value="{{$brands->brand_image}}" class="form-control">
                                 <div class="mb-3">
                                     <label for="exampleInputEmail1" class="form-label">Brand Update Name</label>
                                     <input type="text" name="brand_name" class="form-control"

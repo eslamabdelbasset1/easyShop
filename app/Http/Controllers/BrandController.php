@@ -73,14 +73,41 @@ class BrandController extends Controller
     // Update Brand
     public function update(Request $request, $id)
     {
-        $update = Brand::findOrfail($id)->update([
-            'brand_name' => $request->brand_name,
-        ]);
-//        Query builder
-//        $data = array();
-//        $data['brand_name'] = $request->brand_name;
-//        DB::table('brands')->where('id', $id)->update($data);
+        $validated = $request->validate([
+            'brand_name' => 'required|min:5',
+        ],
+            [
+                'brand_name.required' =>  'Please input brand name',
+                'brand_name.min' =>  'Brand longer than 5 chars',
+            ]
+        );
+        $old_image = $request->old_image;
+        //    Generate new image if found??!
+        $brand_image = $request->brand_image;
+        if ($brand_image != '') {
+            $name_generation = hexdec(uniqid());
+            $img_extension = strtolower($brand_image->getClientOriginalExtension());
+//            dd($img_extension);
+            $img_name = $name_generation.'.'. $img_extension;
+            $upload_location = 'images/brand/';
+            $last_image = $upload_location.$img_name;
+            $brand_image->move($upload_location,$img_name);
+            unlink($old_image);
+            Brand::findOrfail($id)->update([
+                'brand_name' => $request->brand_name,
+                'brand_image' => $last_image,
+                'created_at' => Carbon::now()
+            ]);
 
-        return redirect()->route('all_brand')->with('success', 'Brand updated successfully');
+            return redirect()->route('all_brand')->with('success', 'Brand updated successfully');
+        }else {
+            $x = Brand::findOrfail($id)->update([
+                'brand_name' => $request->brand_name,
+                'created_at' => Carbon::now()
+            ]);
+            return redirect()->route('all_brand')->with('success', 'Brand updated successfully');
+        }
+
+
     }
 }
