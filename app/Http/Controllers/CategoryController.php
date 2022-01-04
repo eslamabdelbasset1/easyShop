@@ -56,4 +56,13 @@ class CategoryController extends Controller
         $categories = Category::findOrfail($id);
         return view('admin.category.edit', compact('categories'));
     }
+    // Update Category
+    public function update(Request $request,$id)
+    {
+        $update = Category::findOrfail($id)->update([
+            'category_name' => $request->category_name,
+            'user_id' => Auth::user()->id,
+        ]);
+        return redirect()->route('all_categories')->with('success', 'Category updated successfully');
+    }
 }
