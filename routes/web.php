@@ -37,7 +37,7 @@ Route::get('/softDelete/category/{id}',[CategoryController::class, 'softDelete']
 Route::get('/category/restore/{id}',[CategoryController::class, 'restore']);
 //Empty Category from database
 Route::get('/empty/category/{id}',[CategoryController::class, 'empty']);
-//================================================
+//=========================================================================================
 
 //=========== Brand Route ====================
 //All Brand
@@ -48,7 +48,9 @@ Route::post('/brand/add',[BrandController::class, 'store'])->name('store.brand')
 Route::get('/brand/edit/{id}',[BrandController::class, 'edit']);
 //Update Brand
 Route::post('/brand/update/{id}',[BrandController::class, 'update']);
-//============================================
+//Update Brand
+Route::get('/brand/delete/{id}',[BrandController::class, 'delete']);
+//=========================================================================================
 
 Route::get('/contact',[ContactController::class, 'index']);
 

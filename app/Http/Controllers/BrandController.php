@@ -5,6 +5,8 @@ use App\Models\Brand;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
+// import the Intervention Image Manager Class
+use Intervention\Image\ImageManagerStatic as Image;
 
 class BrandController extends Controller
 {
@@ -35,13 +37,17 @@ class BrandController extends Controller
         );
         //    Generate new image if found??!
         $brand_image = $request->file('brand_image');
-        $name_generation = hexdec(uniqid());
-        $img_extension = strtolower($brand_image->getClientOriginalExtension());
-        $img_name = $name_generation.'.'. $img_extension;
-        $upload_location = 'images/brand/';
-        $last_image = $upload_location.$img_name;
-        $brand_image->move($upload_location,$img_name);
+//        $name_generation = hexdec(uniqid());
+//        $img_extension = strtolower($brand_image->getClientOriginalExtension());
+//        $img_name = $name_generation.'.'. $img_extension;
+//        $upload_location = 'images/brand/';
+//        $last_image = $upload_location.$img_name;
+//        $brand_image->move($upload_location,$img_name);
 
+        // Intervention Image
+        $name_generation = hexdec(uniqid()).'.'.$brand_image->getClientOriginalExtension();
+        Image::make($brand_image)->resize(300,200)->save('images/brand/'.$name_generation);
+        $last_image = 'images/brand/'.$name_generation;
         Brand::create([
             'brand_name' => $request->brand_name,
             'brand_image' => $last_image,
@@ -109,5 +115,15 @@ class BrandController extends Controller
         }
 
 
+    }
+
+    // Delete Brand
+    public function delete($id)
+    {
+        $image = Brand::findOrFail($id);
+        $old_image = $image->brand_image;
+        unlink($old_image);
+        Brand::findOrFail($id)->delete();
+        return redirect()->back()->with('success', 'Brand deleted successfully');
     }
 }
