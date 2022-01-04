@@ -10,6 +10,12 @@
             <div class="row">
                 <div class="col-md-8">
                     <div class="card">
+                        @if (session('success'))
+                        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                            <strong>{{session('success')}}</strong>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                        @endif
                         <div class="card-header">
                             All Categories
                         </div>
@@ -23,13 +29,21 @@
                     </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <th scope="row"></th>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-
+                        @php($i = 1)
+                        @foreach ( $categories as $category)
+                            <tr>
+                                <td scope="row">{{$i++}}</td>
+                                <td>{{$category->category_name}}</td>
+                                <td>{{$category->user_id}}</td>
+                                <td>
+                                    @if ($category->created_at == null)
+                                        <span class="text-danger">No data set</span>
+                                        @else
+                                        {{$category->created_at->diffForHumans()}}
+                                    @endif
+                                </td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
                     </div>
