@@ -30,7 +30,6 @@ class CategoryController extends Controller
                 'category_name.max' =>  'Category less than 255 chars',
             ]
         );
-
         Category::create([
             'category_name' => $request->category_name,
             'user_id' => Auth::user()->id,
