@@ -20,10 +20,12 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 }); //->middleware('check')
-//Category Controller
+//Category Controller=========================
+//All Category
 Route::get('/category/all',[CategoryController::class, 'index'])->name('all_categories');
-
-
+//Add Category
+Route::post('/category/add',[CategoryController::class, 'store'])->name('store_category');
+//================================================
 
 Route::get('/contact',[ContactController::class, 'index']);
 

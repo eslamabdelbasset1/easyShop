@@ -34,6 +34,27 @@
                 </table>
                     </div>
                 </div>
+
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-header">
+                            Add Categories
+                        </div>
+                        <div class="card-body">
+                            <form action="{{route('store_category')}}" method="POST">
+                                @csrf
+                                <div class="mb-3">
+                                    <label for="exampleInputEmail1" class="form-label">Category Name</label>
+                                    <input type="text" name="category_name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                                    @error('category_name')
+                                        <span class="text-danger">{{$message}}</span>
+                                    @enderror
+                                </div>
+                                <button type="submit" class="btn btn-primary">Add Category</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
