@@ -54,6 +54,8 @@ class CategoryController extends Controller
     public function edit($id)
     {
         $categories = Category::findOrfail($id);
+//        Query Builder
+//        $categories = DB::table('categories')->where('id', $id)->first();
         return view('admin.category.edit', compact('categories'));
     }
     // Update Category
@@ -63,6 +65,12 @@ class CategoryController extends Controller
             'category_name' => $request->category_name,
             'user_id' => Auth::user()->id,
         ]);
+//        Query builder
+//        $data = array();
+//        $data['category_name'] = $request->category_name;
+//        $data['user_id'] = Auth::user()->id;
+//        DB::table('categories')->where('id', $id)->update($data);
+
         return redirect()->route('all_categories')->with('success', 'Category updated successfully');
     }
 }
