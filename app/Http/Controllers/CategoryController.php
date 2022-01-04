@@ -5,14 +5,18 @@ use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
-//use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\DB;
 
 class CategoryController extends Controller
 {
     //All Category
     public function index()
     {
-        $categories = Category::latest()->get();
+//        $categories = Category::latest()->paginate(3);
+//        $categories = DB::table('categories')->paginate(1);
+//        Query Builder Join
+        $categories = DB::table('categories')->join('users', 'categories.user_id', 'users.id')
+            ->select('categories.*', 'users.name')->paginate(3);
         return view('admin.category.index', compact('categories'));
     }
     //Add Category

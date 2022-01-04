@@ -29,22 +29,27 @@
                     </tr>
                     </thead>
                     <tbody>
-                        @php($i = 1)
+{{--                        @php($i = 1)--}}
                         @foreach ( $categories as $category)
                             <tr>
-                                <td scope="row">{{$i++}}</td>
+                                <td scope="row">{{$categories->firstItem()+$loop->index}}</td>
                                 <td>{{$category->category_name}}</td>
-                                <td>{{$category->user_id}}</td>
+                                <td>{{$category->name}}</td>
                                 <td>
                                     @if ($category->created_at == null)
                                         <span class="text-danger">No data set</span>
                                         @else
-                                        {{$category->created_at->diffForHumans()}}
+                                        {{Carbon\Carbon::parse($category->created_at)->diffForHumans()}}
                                     @endif
                                 </td>
                             </tr>
                         @endforeach
                     </tbody>
+                    <tfoot>
+                        <tr>
+                            <td> {{$categories->links()}}</td>
+                        </tr>
+                    </tfoot>
                 </table>
                     </div>
                 </div>
