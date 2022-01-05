@@ -17,6 +17,10 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/email/verify', function () {
+    return view('auth.verify-email');
+})->middleware('auth')->name('verification.notice');
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -48,9 +52,15 @@ Route::post('/brand/add',[BrandController::class, 'store'])->name('store.brand')
 Route::get('/brand/edit/{id}',[BrandController::class, 'edit']);
 //Update Brand
 Route::post('/brand/update/{id}',[BrandController::class, 'update']);
-//Update Brand
+//delete Brand
 Route::get('/brand/delete/{id}',[BrandController::class, 'delete']);
 //=========================================================================================
+
+// Multi Image ===============================
+Route::get('/multi/image',[BrandController::class, 'multiImage'])->name('multi_image');
+Route::post('/multi/add',[BrandController::class, 'storeImage'])->name('store.image');
+
+
 
 Route::get('/contact',[ContactController::class, 'index']);
 

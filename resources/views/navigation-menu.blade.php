@@ -23,6 +23,9 @@
                     <x-jet-nav-link href="{{route('all_brand')}}">
                         Brand
                     </x-jet-nav-link>
+                    <x-jet-nav-link href="{{route('multi_image')}}">
+                        Multi Image
+                    </x-jet-nav-link>
                 </div>
             </div>
 

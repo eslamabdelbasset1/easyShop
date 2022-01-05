@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Brand;
+use App\Models\Multipicture;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
@@ -125,5 +126,39 @@ class BrandController extends Controller
         unlink($old_image);
         Brand::findOrFail($id)->delete();
         return redirect()->back()->with('success', 'Brand deleted successfully');
+    }
+
+
+//    ----------------- Multi image --------------
+    public function multiImage()
+    {
+        $images = Multipicture::all();
+        return view('admin.multipic.index', compact('images'));
+    }
+    //Add Multi Images
+    public function storeImage(Request $request)
+    {
+        //    Generate new image if found??!
+        $image = $request->file('image');
+//        $name_generation = hexdec(uniqid());
+//        $img_extension = strtolower($image->getClientOriginalExtension());
+//        $img_name = $name_generation.'.'. $img_extension;
+//        $upload_location = 'images/brand/';
+//        $last_image = $upload_location.$img_name;
+//        $image->move($upload_location,$img_name);
+
+        // Intervention Image
+        foreach ($image as $multiImage)
+        {
+            $name_generation = hexdec(uniqid()) . '.' . $multiImage->getClientOriginalExtension();
+            Image::make($multiImage)->resize(300, 200)->save('images/multiImage/' . $name_generation);
+            $last_image = 'images/multiImage/' . $name_generation;
+            Multipicture::create([
+                'image' => $last_image,
+                'created_at' => Carbon::now()
+            ]);
+        }
+
+        return redirect()->back()->with('success', 'Multi Images inserted successfully');
     }
 }
