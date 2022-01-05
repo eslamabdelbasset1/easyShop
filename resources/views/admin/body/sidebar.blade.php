@@ -1,6 +1,6 @@
-{{--@extends('admin.admin_master')--}}
+@extends('admin.admin_master')
 
-{{--@section('sidebar')--}}
+@section('sidebar')
 <aside class="left-sidebar bg-sidebar">
     <div id="sidebar" class="sidebar sidebar-with-footer">
         <!-- Aplication Brand -->
@@ -447,4 +447,4 @@
         <hr class="separator" />
     </div>
 </aside>
-{{--@endsection--}}
+@endsection

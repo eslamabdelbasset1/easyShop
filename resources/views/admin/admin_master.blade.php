@@ -55,8 +55,8 @@
 ——— LEFT SIDEBAR WITH FOOTER
 =====================================
 -->
-{{--    @yield('sidebar')--}}
-@include('admin.body.sidebar')
+    @yield('sidebar')
+{{--@include('admin.body.sidebar')--}}
 
 
     <div class="page-wrapper">
