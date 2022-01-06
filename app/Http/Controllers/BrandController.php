@@ -92,13 +92,16 @@ class BrandController extends Controller
         //    Generate new image if found??!
         $brand_image = $request->brand_image;
         if ($brand_image != '') {
-            $name_generation = hexdec(uniqid());
-            $img_extension = strtolower($brand_image->getClientOriginalExtension());
-//            dd($img_extension);
-            $img_name = $name_generation.'.'. $img_extension;
-            $upload_location = 'images/brand/';
-            $last_image = $upload_location.$img_name;
-            $brand_image->move($upload_location,$img_name);
+//            $name_generation = hexdec(uniqid());
+//            $img_extension = strtolower($brand_image->getClientOriginalExtension());
+////            dd($img_extension);
+//            $img_name = $name_generation.'.'. $img_extension;
+//            $upload_location = 'images/brand/';
+//            $last_image = $upload_location.$img_name;
+//            $brand_image->move($upload_location,$img_name);
+            $name_generation = hexdec(uniqid()).'.'.$brand_image->getClientOriginalExtension();
+            Image::make($brand_image)->resize(300,200)->save('images/brand/'.$name_generation);
+            $last_image = 'images/brand/'.$name_generation;
             unlink($old_image);
             Brand::findOrfail($id)->update([
                 'brand_name' => $request->brand_name,

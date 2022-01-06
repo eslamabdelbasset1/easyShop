@@ -1,11 +1,8 @@
-@extends('admin.admin_master')
-
-@section('sidebar')
 <aside class="left-sidebar bg-sidebar">
     <div id="sidebar" class="sidebar sidebar-with-footer">
         <!-- Aplication Brand -->
         <div class="app-brand">
-            <a href="/index.html">
+            <a href="">
                 <svg
                     class="brand-icon"
                     xmlns="http://www.w3.org/2000/svg"
@@ -35,32 +32,37 @@
                     <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#dashboard"
                        aria-expanded="false" aria-controls="dashboard">
                         <i class="mdi mdi-view-dashboard-outline"></i>
-                        <span class="nav-text">Dashboard</span> <b class="caret"></b>
+                        <span class="nav-text">Home</span> <b class="caret"></b>
                     </a>
                     <ul  class="collapse show"  id="dashboard"
                          data-parent="#sidebar-menu">
                         <div class="sub-menu">
                             <li  class="active" >
-                                <a class="sidenav-item-link" href="index.html">
-                                    <span class="nav-text">Ecommerce</span>
+                                <a class="sidenav-item-link" href="{{route('home.slider')}}">
+                                    <span class="nav-text">Slider</span>
 
                                 </a>
                             </li>
-                            <li >
-                                <a class="sidenav-item-link" href="analytics.html">
-                                    <span class="nav-text">Analytics</span>
+                            <li  class="active" >
+                                <a class="sidenav-item-link" href="index.html">
+                                    <span class="nav-text">Home About</span>
 
-                                    <span class="badge badge-success">new</span>
+                                </a>
+                            </li>
+                            <li  class="active" >
+                                <a class="sidenav-item-link" href="index.html">
+                                    <span class="nav-text">Home Portfolio</span>
 
+                                </a>
+                            </li>
+                            <li  class="active" >
+                                <a class="sidenav-item-link" href="{{route('all_brand')}}">
+                                    <span class="nav-text">Home Brand</span>
                                 </a>
                             </li>
                         </div>
                     </ul>
                 </li>
-
-
-
-
 
                 <li  class="has-sub" >
                     <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#ui-elements"
@@ -447,4 +449,4 @@
         <hr class="separator" />
     </div>
 </aside>
-@endsection
+

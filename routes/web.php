@@ -3,6 +3,7 @@
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\HomeController;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
@@ -23,7 +24,8 @@ Route::get('/email/verify', function () {
 
 
 Route::get('/', function () {
-    return view('home');
+    $brands = DB::table('brands')->get();
+    return view('home', compact('brands'));
 }); //->middleware('check')
 
 //Category Route=================================
@@ -60,7 +62,14 @@ Route::get('/brand/delete/{id}',[BrandController::class, 'delete']);
 Route::get('/multi/image',[BrandController::class, 'multiImage'])->name('multi_image');
 Route::post('/multi/add',[BrandController::class, 'storeImage'])->name('store.image');
 
-
+// Admin ALL Route ==================
+Route::get('/home/slider',[HomeController::class, 'slider'])->name('home.slider');
+Route::get('/add/slider',[HomeController::class, 'addSlider'])->name('add.slider');
+Route::post('/store/slider',[HomeController::class, 'storeSlider'])->name('store.slider');
+Route::get('/slider/edit/{id}',[HomeController::class, 'editSlider']);
+Route::post('/slider/update/{id}',[HomeController::class, 'updateSlider']);
+Route::get('/slider/delete/{id}',[BrandController::class, 'deleteSlider']);
+//==================================
 
 Route::get('/contact',[ContactController::class, 'index']);
 
