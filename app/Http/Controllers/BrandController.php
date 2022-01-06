@@ -28,12 +28,12 @@ class BrandController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'brand_name' => 'required|unique:brands|min:5',
+            'brand_name' => 'required|unique:brands|min:2',
             'brand_image' => 'required|mimes:jpg,png,jpeg',
         ],
             [
                 'brand_name.required' =>  'Please input brand name',
-                'brand_name.min' =>  'Brand longer than 5 chars',
+                'brand_name.min' =>  'Brand longer than 2 chars',
             ]
         );
         //    Generate new image if found??!
@@ -66,7 +66,11 @@ class BrandController extends Controller
 //        $data[user_id] = Auth::user()->id;
 //        DB::table('brands')->insert($data);
 
-        return redirect()->back()->with('success', 'Brand inserted successfully');
+        $notification = array(
+            'message' => 'Brand inserted successfully',
+            'alert-type' => 'success'
+         );
+        return redirect()->back()->with($notification);
     }
 
     // Edit Brand
@@ -108,14 +112,21 @@ class BrandController extends Controller
                 'brand_image' => $last_image,
                 'created_at' => Carbon::now()
             ]);
-
-            return redirect()->route('all_brand')->with('success', 'Brand updated successfully');
+            $notification = array(
+                'message' => 'Brand updated successfully',
+                'alert-type' => 'success'
+            );
+            return redirect()->route('all_brand')->with($notification);
         }else {
             $x = Brand::findOrfail($id)->update([
                 'brand_name' => $request->brand_name,
                 'created_at' => Carbon::now()
             ]);
-            return redirect()->route('all_brand')->with('success', 'Brand updated successfully');
+            $notification = array(
+                'message' => 'Brand updated successfully',
+                'alert-type' => 'success'
+            );
+            return redirect()->route('all_brand')->with($notification);
         }
 
 
@@ -128,7 +139,12 @@ class BrandController extends Controller
         $old_image = $image->brand_image;
         unlink($old_image);
         Brand::findOrFail($id)->delete();
-        return redirect()->back()->with('success', 'Brand deleted successfully');
+
+        $notification = array(
+            'message' => 'Brand deleted successfully',
+            'alert-type' => 'error'
+        );
+        return redirect()->back()->with($notification);
     }
 
 
@@ -161,8 +177,11 @@ class BrandController extends Controller
                 'created_at' => Carbon::now()
             ]);
         }
-
-        return redirect()->back()->with('success', 'Multi Images inserted successfully');
+        $notification = array(
+            'message' => 'Multi Images inserted successfully',
+            'alert-type' => 'success'
+        );
+        return redirect()->back()->with($notification);
     }
 
 
@@ -170,6 +189,10 @@ class BrandController extends Controller
     public function logout()
     {
         Auth::logout();
-        return Redirect()->route('login')->with('success', 'User Logout');
+        $notification = array(
+            'message' => 'User Logout',
+            'alert-type' => 'info'
+        );
+        return Redirect()->route('login')->with($notification);
     }
 }

@@ -1,237 +1,259 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-<head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Easy - Admin Dashboard</title>
+        <title>Easy - Admin Dashboard</title>
 
-    <!-- GOOGLE FONTS -->
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500|Poppins:400,500,600,700|Roboto:400,500" rel="stylesheet"/>
-    <link href="https://cdn.materialdesignicons.com/3.0.39/css/materialdesignicons.min.css" rel="stylesheet" />
+        <!-- GOOGLE FONTS -->
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500|Poppins:400,500,600,700|Roboto:400,500" rel="stylesheet"/>
+        <link href="https://cdn.materialdesignicons.com/3.0.39/css/materialdesignicons.min.css" rel="stylesheet" />
 
-    <!-- PLUGINS CSS STYLE -->
-    <link href="{{asset('backend/assets/plugins/toaster/toastr.min.css')}}" rel="stylesheet" />
-    <link href="{{asset('backend/assets/plugins/nprogress/nprogress.css')}}" rel="stylesheet" />
-    <link href="{{asset('backend/assets/plugins/flag-icons/css/flag-icon.min.css')}}" rel="stylesheet"/>
-    <link href="{{asset('backend/assets/plugins/jvectormap/jquery-jvectormap-2.0.3.css')}}" rel="stylesheet" />
-    <link href="{{asset('backend/assets/plugins/ladda/ladda.min.css')}}" rel="stylesheet" />
-    <link href="{{asset('backend/assets/plugins/select2/css/select2.min.css')}}" rel="stylesheet" />
-    <link href="{{asset('backend/assets/plugins/daterangepicker/daterangepicker.css')}}" rel="stylesheet" />
+        <!-- PLUGINS CSS STYLE -->
+        <link href="{{asset('backend/assets/plugins/toaster/toastr.min.css')}}" rel="stylesheet" />
+        <link href="{{asset('backend/assets/plugins/nprogress/nprogress.css')}}" rel="stylesheet" />
+        <link href="{{asset('backend/assets/plugins/flag-icons/css/flag-icon.min.css')}}" rel="stylesheet"/>
+        <link href="{{asset('backend/assets/plugins/jvectormap/jquery-jvectormap-2.0.3.css')}}" rel="stylesheet" />
+        <link href="{{asset('backend/assets/plugins/ladda/ladda.min.css')}}" rel="stylesheet" />
+        <link href="{{asset('backend/assets/plugins/select2/css/select2.min.css')}}" rel="stylesheet" />
+        <link href="{{asset('backend/assets/plugins/daterangepicker/daterangepicker.css')}}" rel="stylesheet" />
 
-    <!-- SLEEK CSS -->
-    <link id="sleek-css" rel="stylesheet" href="{{asset('backend/assets/css/sleek.css')}}" />
-
-
-
-    <!-- FAVICON -->
-    <link href="{{asset('backend/assets/img/favicon.png')}}" rel="shortcut icon"/>
-
-    <!--
-      HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries
-    -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-    <script src="{{asset('backend/assets/plugins/nprogress/nprogress.js')}}"></script>
-</head>
+        <!-- SLEEK CSS -->
+        <link id="sleek-css" rel="stylesheet" href="{{asset('backend/assets/css/sleek.css')}}" />
+        <!-- Toastr CSS -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" type="text/css" rel="stylesheet" />
 
 
-<body class="sidebar-fixed sidebar-dark header-light header-fixed" id="body">
-<script>
-    NProgress.configure({ showSpinner: false });
-    NProgress.start();
-</script>
+        <!-- FAVICON -->
+        <link href="{{asset('backend/assets/img/favicon.png')}}" rel="shortcut icon"/>
 
-<div class="mobile-sticky-body-overlay"></div>
+        <!--
+          HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries
+        -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+          <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+          <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
+        <script src="{{asset('backend/assets/plugins/nprogress/nprogress.js')}}"></script>
+    </head>
+    <body class="sidebar-fixed sidebar-dark header-light header-fixed" id="body">
+        <script>
+            NProgress.configure({ showSpinner: false });
+            NProgress.start();
+        </script>
 
-<div class="wrapper">
+        <div class="mobile-sticky-body-overlay"></div>
 
-    <!--
-====================================
-——— LEFT SIDEBAR WITH FOOTER
-=====================================
--->
+        <div class="wrapper">
 
-@include('admin.body.sidebar')
+            <!--
+        ====================================
+        ——— LEFT SIDEBAR WITH FOOTER
+        =====================================
+        -->
+
+        @include('admin.body.sidebar')
 
 
-    <div class="page-wrapper">
-        <!-- Header -->
-        <header class="main-header " id="header">
-            <nav class="navbar navbar-static-top navbar-expand-lg">
-                <!-- Sidebar toggle button -->
-                <button id="sidebar-toggler" class="sidebar-toggle">
-                    <span class="sr-only">Toggle navigation</span>
-                </button>
-                <!-- search form -->
-                <div class="search-form d-none d-lg-inline-block">
-                    <div class="input-group">
-                        <button type="button" name="search" id="search-btn" class="btn btn-flat">
-                            <i class="mdi mdi-magnify"></i>
+            <div class="page-wrapper">
+                <!-- Header -->
+                <header class="main-header " id="header">
+                    <nav class="navbar navbar-static-top navbar-expand-lg">
+                        <!-- Sidebar toggle button -->
+                        <button id="sidebar-toggler" class="sidebar-toggle">
+                            <span class="sr-only">Toggle navigation</span>
                         </button>
-                        <input type="text" name="query" id="search-input" class="form-control" placeholder="'button', 'chart' etc."
-                               autofocus autocomplete="off" />
-                    </div>
-                    <div id="search-results-container">
-                        <ul id="search-results"></ul>
-                    </div>
-                </div>
+                        <!-- search form -->
+                        <div class="search-form d-none d-lg-inline-block">
+                            <div class="input-group">
+                                <button type="button" name="search" id="search-btn" class="btn btn-flat">
+                                    <i class="mdi mdi-magnify"></i>
+                                </button>
+                                <input type="text" name="query" id="search-input" class="form-control" placeholder="'button', 'chart' etc."
+                                       autofocus autocomplete="off" />
+                            </div>
+                            <div id="search-results-container">
+                                <ul id="search-results"></ul>
+                            </div>
+                        </div>
 
-                <div class="navbar-right ">
-                    <ul class="nav navbar-nav">
-                        <!-- Github Link Button -->
-                        <li class="github-link mr-3">
-                            <a class="btn btn-outline-secondary btn-sm" href="https://github.com/tafcoder/sleek-dashboard" target="_blank">
-                                <span class="d-none d-md-inline-block mr-2">Source Code</span>
-                                <i class="mdi mdi-github-circle"></i>
-                            </a>
+                        <div class="navbar-right ">
+                            <ul class="nav navbar-nav">
+                                <!-- Github Link Button -->
+                                <li class="github-link mr-3">
+                                    <a class="btn btn-outline-secondary btn-sm" href="https://github.com/tafcoder/sleek-dashboard" target="_blank">
+                                        <span class="d-none d-md-inline-block mr-2">Source Code</span>
+                                        <i class="mdi mdi-github-circle"></i>
+                                    </a>
 
-                        </li>
-                        <li class="dropdown notifications-menu">
-                            <button class="dropdown-toggle" data-toggle="dropdown">
-                                <i class="mdi mdi-bell-outline"></i>
-                            </button>
-                            <ul class="dropdown-menu dropdown-menu-right">
-                                <li class="dropdown-header">You have 5 notifications</li>
-                                <li>
-                                    <a href="#">
-                                        <i class="mdi mdi-account-plus"></i> New user registered
-                                        <span class=" font-size-12 d-inline-block float-right"><i class="mdi mdi-clock-outline"></i> 10 AM</span>
-                                    </a>
                                 </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="mdi mdi-account-remove"></i> User deleted
-                                        <span class=" font-size-12 d-inline-block float-right"><i class="mdi mdi-clock-outline"></i> 07 AM</span>
-                                    </a>
+                                <li class="dropdown notifications-menu">
+                                    <button class="dropdown-toggle" data-toggle="dropdown">
+                                        <i class="mdi mdi-bell-outline"></i>
+                                    </button>
+                                    <ul class="dropdown-menu dropdown-menu-right">
+                                        <li class="dropdown-header">You have 5 notifications</li>
+                                        <li>
+                                            <a href="#">
+                                                <i class="mdi mdi-account-plus"></i> New user registered
+                                                <span class=" font-size-12 d-inline-block float-right"><i class="mdi mdi-clock-outline"></i> 10 AM</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <i class="mdi mdi-account-remove"></i> User deleted
+                                                <span class=" font-size-12 d-inline-block float-right"><i class="mdi mdi-clock-outline"></i> 07 AM</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <i class="mdi mdi-chart-areaspline"></i> Sales report is ready
+                                                <span class=" font-size-12 d-inline-block float-right"><i class="mdi mdi-clock-outline"></i> 12 PM</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <i class="mdi mdi-account-supervisor"></i> New client
+                                                <span class=" font-size-12 d-inline-block float-right"><i class="mdi mdi-clock-outline"></i> 10 AM</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <i class="mdi mdi-server-network-off"></i> Server overloaded
+                                                <span class=" font-size-12 d-inline-block float-right"><i class="mdi mdi-clock-outline"></i> 05 AM</span>
+                                            </a>
+                                        </li>
+                                        <li class="dropdown-footer">
+                                            <a class="text-center" href="#"> View All </a>
+                                        </li>
+                                    </ul>
                                 </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="mdi mdi-chart-areaspline"></i> Sales report is ready
-                                        <span class=" font-size-12 d-inline-block float-right"><i class="mdi mdi-clock-outline"></i> 12 PM</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="mdi mdi-account-supervisor"></i> New client
-                                        <span class=" font-size-12 d-inline-block float-right"><i class="mdi mdi-clock-outline"></i> 10 AM</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="mdi mdi-server-network-off"></i> Server overloaded
-                                        <span class=" font-size-12 d-inline-block float-right"><i class="mdi mdi-clock-outline"></i> 05 AM</span>
-                                    </a>
-                                </li>
-                                <li class="dropdown-footer">
-                                    <a class="text-center" href="#"> View All </a>
+                                <!-- User Account -->
+                                <li class="dropdown user-menu">
+                                    <button href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+                                        <img src="{{Auth::user()->profile_photo_url}}" class="user-image" alt="User Image" />
+                                        <span class="d-none d-lg-inline-block">{{Auth::user()->name}}</span>
+                                    </button>
+                                    <ul class="dropdown-menu dropdown-menu-right">
+                                        <!-- User image -->
+                                        <li class="dropdown-header">
+                                            <img src="{{Auth::user()->profile_photo_url}}" class="img-circle" alt="User Image" />
+                                            <div class="d-inline-block">
+                                                {{Auth::user()->name}} <small class="pt-1">{{Auth::user()->email}}</small>
+                                            </div>
+                                        </li>
+
+                                        <li>
+                                            <a href="{{route('show.profile')}}">
+                                                <i class="mdi mdi-account"></i> My Profile
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="{{route('change.password')}}">
+        {{--                                        <i class="mdi mdi-"></i>--}}
+                                                <svg style="width:15px;height:15px" viewBox="0 0 24 24">
+                                                    <path fill="currentColor" d="M6 20V10H18V13.09C18.33 13.04 18.66 13 19 13C19.34 13 19.67 13.04 20 13.09V10C20 8.9 19.11 8 18 8H17V6C17 3.24 14.76 1 12 1S7 3.24 7 6V8H6C4.89 8 4 8.89 4 10V20C4 21.1 4.89 22 6 22H13.81C13.46 21.39 13.22 20.72 13.09 20H6M9 6C9 4.34 10.34 3 12 3S15 4.34 15 6V8H9V6M14 15C14 16.11 13.11 17 12 17C10.89 17 10 16.1 10 15C10 13.89 10.89 13 12 13C13.11 13 14 13.9 14 15M23 18V20H20V23H18V20H15V18H18V15H20V18H23Z" />
+                                                </svg>
+                                                &nbsp;&nbsp;Change Password
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#"> <i class="mdi mdi-diamond-stone"></i> Projects </a>
+                                        </li>
+                                        <li>
+                                            <a href="#"> <i class="mdi mdi-settings"></i> Account Setting </a>
+                                        </li>
+
+                                        <li class="dropdown-footer">
+                                            <a href="{{route('user.logout')}}"> <i class="mdi mdi-logout"></i> LogOut </a>
+                                        </li>
+                                    </ul>
                                 </li>
                             </ul>
-                        </li>
-                        <!-- User Account -->
-                        <li class="dropdown user-menu">
-                            <button href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
-                                <img src="{{Auth::user()->profile_photo_url}}" class="user-image" alt="User Image" />
-                                <span class="d-none d-lg-inline-block">{{Auth::user()->name}}</span>
-                            </button>
-                            <ul class="dropdown-menu dropdown-menu-right">
-                                <!-- User image -->
-                                <li class="dropdown-header">
-                                    <img src="{{Auth::user()->profile_photo_url}}" class="img-circle" alt="User Image" />
-                                    <div class="d-inline-block">
-                                        {{Auth::user()->name}} <small class="pt-1">{{Auth::user()->email}}</small>
-                                    </div>
-                                </li>
+                        </div>
+                    </nav>
 
-                                <li>
-                                    <a href="{{route('show.profile')}}">
-                                        <i class="mdi mdi-account"></i> My Profile
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="{{route('change.password')}}">
-{{--                                        <i class="mdi mdi-"></i>--}}
-                                        <svg style="width:15px;height:15px" viewBox="0 0 24 24">
-                                            <path fill="currentColor" d="M6 20V10H18V13.09C18.33 13.04 18.66 13 19 13C19.34 13 19.67 13.04 20 13.09V10C20 8.9 19.11 8 18 8H17V6C17 3.24 14.76 1 12 1S7 3.24 7 6V8H6C4.89 8 4 8.89 4 10V20C4 21.1 4.89 22 6 22H13.81C13.46 21.39 13.22 20.72 13.09 20H6M9 6C9 4.34 10.34 3 12 3S15 4.34 15 6V8H9V6M14 15C14 16.11 13.11 17 12 17C10.89 17 10 16.1 10 15C10 13.89 10.89 13 12 13C13.11 13 14 13.9 14 15M23 18V20H20V23H18V20H15V18H18V15H20V18H23Z" />
-                                        </svg>
-                                        &nbsp;&nbsp;Change Password
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#"> <i class="mdi mdi-diamond-stone"></i> Projects </a>
-                                </li>
-                                <li>
-                                    <a href="#"> <i class="mdi mdi-settings"></i> Account Setting </a>
-                                </li>
 
-                                <li class="dropdown-footer">
-                                    <a href="{{route('user.logout')}}"> <i class="mdi mdi-logout"></i> LogOut </a>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
+                </header>
+
+
+                <div class="content-wrapper">
+                    <div class="content">
+                      @yield('admin')
+                    </div>
+
+
+
+
                 </div>
-            </nav>
 
+                <footer class="footer mt-auto">
+                    <div class="copyright bg-white">
+                        <p>
+                            &copy; <span id="copy-year">2022</span> Copyright Easy Dashboard by
+                            <a
+                                class="text-primary"
+                                href="https://eslamabdelbasset.me/"
+                                target="_blank"
+                            >Islam</a
+                            >.
+                        </p>
+                    </div>
+                    <script>
+                        var d = new Date();
+                        var year = d.getFullYear();
+                        document.getElementById("copy-year").innerHTML = year;
+                    </script>
+                </footer>
 
-        </header>
-
-
-        <div class="content-wrapper">
-            <div class="content">
-              @yield('admin')
             </div>
-
-
-
-
         </div>
 
-        <footer class="footer mt-auto">
-            <div class="copyright bg-white">
-                <p>
-                    &copy; <span id="copy-year">2022</span> Copyright Easy Dashboard by
-                    <a
-                        class="text-primary"
-                        href="https://eslamabdelbasset.me/"
-                        target="_blank"
-                    >Islam</a
-                    >.
-                </p>
-            </div>
-            <script>
-                var d = new Date();
-                var year = d.getFullYear();
-                document.getElementById("copy-year").innerHTML = year;
-            </script>
-        </footer>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDCn8TFXGg17HAUcNpkwtxxyT9Io9B_NcM" defer></script>
+        <script src="{{asset('backend/assets/plugins/jquery/jquery.min.js')}}"></script>
+        <script src="{{asset('backend/assets/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+        <script src="{{asset('backend/assets/plugins/toaster/toastr.min.js')}}"></script>
+        <script src="{{asset('backend/assets/plugins/slimscrollbar/jquery.slimscroll.min.js')}}"></script>
+        <script src="{{asset('backend/assets/plugins/charts/Chart.min.js')}}"></script>
+        <script src="{{asset('backend/assets/plugins/ladda/spin.min.js')}}"></script>
+        <script src="{{asset('backend/assets/plugins/ladda/ladda.min.js')}}"></script>
+        <script src="{{asset('backend/assets/plugins/jquery-mask-input/jquery.mask.min.js')}}"></script>
+        <script src="{{asset('backend/assets/plugins/select2/js/select2.min.js')}}"></script>
+        <script src="{{asset('backend/assets/plugins/jvectormap/jquery-jvectormap-2.0.3.min.js')}}"></script>
+        <script src="{{asset('backend/assets/plugins/jvectormap/jquery-jvectormap-world-mill.js')}}"></script>
+        <script src="{{asset('backend/assets/plugins/daterangepicker/moment.min.js')}}"></script>
+        <script src="{{asset('backend/assets/plugins/daterangepicker/daterangepicker.js')}}"></script>
+        <script src="{{asset('backend/assets/plugins/jekyll-search.min.js')}}"></script>
+        <script src="{{asset('backend/assets/js/sleek.js')}}"></script>
+        <script src="{{asset('backend/assets/js/chart.js')}}"></script>
+        <script src="{{asset('backend/assets/js/date-range.js')}}"></script>
+        <script src="{{asset('backend/assets/js/map.js')}}"></script>
+        <script src="{{asset('backend/assets/js/custom.js')}}"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
-    </div>
-</div>
+        <script>
+            @if (Session::has('message'))
+                var type = "{{Session::get('alert-type', 'info')}}";
+                switch(type)
+                {
+                    case 'info':
+                        toastr.info('{{Session::get('message')}}');
+                        break;
+                    case 'success':
+                        toastr.success('{{Session::get('message')}}');
+                        break;
+                    case 'warning':
+                        toastr.warning('{{Session::get('message')}}');
+                        break;
+                    case 'error':
+                        toastr.error('{{Session::get('message')}}');
+                        break;
+                }
 
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDCn8TFXGg17HAUcNpkwtxxyT9Io9B_NcM" defer></script>
-<script src="{{asset('backend/assets/plugins/jquery/jquery.min.js')}}"></script>
-<script src="{{asset('backend/assets/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
-<script src="{{asset('backend/assets/plugins/toaster/toastr.min.js')}}"></script>
-<script src="{{asset('backend/assets/plugins/slimscrollbar/jquery.slimscroll.min.js')}}"></script>
-<script src="{{asset('backend/assets/plugins/charts/Chart.min.js')}}"></script>
-<script src="{{asset('backend/assets/plugins/ladda/spin.min.js')}}"></script>
-<script src="{{asset('backend/assets/plugins/ladda/ladda.min.js')}}"></script>
-<script src="{{asset('backend/assets/plugins/jquery-mask-input/jquery.mask.min.js')}}"></script>
-<script src="{{asset('backend/assets/plugins/select2/js/select2.min.js')}}"></script>
-<script src="{{asset('backend/assets/plugins/jvectormap/jquery-jvectormap-2.0.3.min.js')}}"></script>
-<script src="{{asset('backend/assets/plugins/jvectormap/jquery-jvectormap-world-mill.js')}}"></script>
-<script src="{{asset('backend/assets/plugins/daterangepicker/moment.min.js')}}"></script>
-<script src="{{asset('backend/assets/plugins/daterangepicker/daterangepicker.js')}}"></script>
-<script src="{{asset('backend/assets/plugins/jekyll-search.min.js')}}"></script>
-<script src="{{asset('backend/assets/js/sleek.js')}}"></script>
-<script src="{{asset('backend/assets/js/chart.js')}}"></script>
-<script src="{{asset('backend/assets/js/date-range.js')}}"></script>
-<script src="{{asset('backend/assets/js/map.js')}}"></script>
-<script src="{{asset('backend/assets/js/custom.js')}}"></script>
-</body>
+            @endif
+        </script>
+    </body>
 </html>
