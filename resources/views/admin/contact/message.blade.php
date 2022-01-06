@@ -6,42 +6,43 @@
                 <div class="col-md-12">
                     <div class="row">
                         <div class="col-sm-6">
-                            <h4>Contact page</h4>
+                            <h4>Contact Message page</h4>
                         </div>
-                        <div class="col-sm-6 pb-4">
-                            <a href="{{route('add.contact')}}">
-                                <button class="btn btn-primary">Add Contact</button>
-                            </a>
-                        </div>
+{{--                        <div class="col-sm-6 pb-4">--}}
+{{--                            <a href="{{route('add.message')}}">--}}
+{{--                                <button class="btn btn-primary">Add Contact</button>--}}
+{{--                            </a>--}}
+{{--                        </div>--}}
                     </div>
                 </div>
 
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header">
-                            All Contacts
+                            All Message Data
                         </div>
                         <table class="table">
                             <thead>
                             <tr>
                                 <th scope="col" width="5%">No</th>
-                                <th scope="col" width="35%">Contact Address</th>
-                                <th scope="col" width="25%">Email</th>
-                                <th scope="col" width="15%">Phone</th>
-                                <th scope="col" width="20%">Action</th>
+                                <th scope="col" width="15%">Name</th>
+                                <th scope="col" width="20%">Email</th>
+                                <th scope="col" width="20%">subject</th>
+                                <th scope="col" width="25%">Message</th>
+                                <th scope="col" width="15%">Action</th>
                             </tr>
                             </thead>
                             <tbody>
                             @php($i = 1)
-                            @foreach ( $contacts as $contact)
+                            @foreach ( $messages as $message)
                                 <tr>
                                     <td scope="row">{{$i++}}</td>
-                                    <td>{{$contact->address}}</td>
-                                    <td>{{$contact->email}}</td>
-                                    <td>{{$contact->phone}}</td>
+                                    <td>{{$message->name}}</td>
+                                    <td>{{$message->email}}</td>
+                                    <td>{{$message->subject}}</td>
+                                    <td>{{$message->message}}</td>
                                     <td>
-                                        <a href="{{url('contact/edit/'.$contact->id)}}" class="btn btn-info">Edit</a>
-                                        <a href="{{url('contact/delete/'.$contact->id)}}" class="btn btn-danger"
+                                        <a href="{{url('message/delete/'.$message->id)}}" class="btn btn-danger"
                                            onclick="return confirm('Are you sure delete?')">Delete</a>
                                     </td>
 

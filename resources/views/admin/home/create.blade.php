@@ -5,6 +5,12 @@
             <h2>Create About</h2>
         </div>
         <div class="card-body">
+            @if (session('success'))
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <strong>{{session('success')}}</strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            @endif
             <form action="{{route('store.about')}}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">

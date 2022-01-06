@@ -93,6 +93,10 @@ Route::post('/contact/update/{id}',[ContactController::class, 'updateContact']);
 Route::get('/contact/delete/{id}',[ContactController::class, 'deleteContact']);
 //Home Contact Page
 Route::get('/content',[ContactController::class, 'contact'])->name('contact');
+Route::post('/content/message',[ContactController::class, 'contactForm'])->name('contact.form');
+Route::get('/admin/message',[ContactController::class, 'adminMessage'])->name('admin.message');
+Route::get('/message/delete/{id}',[ContactController::class, 'deleteMessage']);
+
 //==================================
 
 // portfolio ALL Route ==================

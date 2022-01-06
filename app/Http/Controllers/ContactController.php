@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Contact;
+use App\Models\ContactForm;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -61,7 +62,7 @@ class ContactController extends Controller
         return redirect()->route('admin.contact')->with('success', 'Contact updated successfully');
     }
 
-    // Delete Brand
+    // Delete Contact
     public function deleteContact($id)
     {
         Contact::findOrFail($id)->delete();
@@ -74,5 +75,41 @@ class ContactController extends Controller
     {
         $contacts = DB::table('contacts')->first();
         return view('pages.contact', compact('contacts'));
+    }
+    public function contactForm(Request $request)
+    {
+        $validated = $request->validate([
+            'name' => 'required|unique:contact_forms|max:255',
+            'email' => 'required|unique:contact_forms|max:255',
+            'subject' => 'required|unique:contact_forms|min:5',
+            'message' => 'required|unique:contact_forms|min:5',
+        ],
+            [
+                'name.required' =>  'Please enter contact name',
+                'email.required' =>  'Please enter contact email',
+                'subject.min' =>  'Phone less than 5 chars',
+                'message.min' =>  'Address less than 5 chars',
+            ]
+        );
+        ContactForm::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'subject' => $request->subject,
+            'message' => $request->message,
+        ]);
+        return redirect()->route('contact')->with('success', 'Your message send successfully');
+    }
+
+    //  Contact Message page
+    public function adminMessage()
+    {
+        $messages = DB::table('contact_forms')->get();
+        return view('admin.contact.message', compact('messages'));
+    }
+    // Delete Message
+    public function deleteMessage($id)
+    {
+        ContactForm::findOrFail($id)->delete();
+        return redirect()->back()->with('success', 'Message deleted successfully');
     }
 }
