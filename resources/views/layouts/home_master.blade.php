@@ -40,13 +40,9 @@
 <body>
 {{--@yield('header')--}}
 @include('layouts.body.header')
-@include('layouts.body.slider')
-
-
 <main id="main">
     @yield('home_content')
 </main><!-- End #main -->
-
 @include('layouts.body.footer')
 
 <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
