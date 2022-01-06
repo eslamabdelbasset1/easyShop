@@ -1,6 +1,6 @@
 @extends('admin.admin_master')
 
-@section('content')
+@section('admin')
 <!-- Top Statistics -->
 <div class="row">
     <div class="col-xl-3 col-sm-6">

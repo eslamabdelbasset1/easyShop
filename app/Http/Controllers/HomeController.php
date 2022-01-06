@@ -66,14 +66,21 @@ class HomeController extends Controller
                 'description' => $request->description,
                 'image' => $last_image,
             ]);
-
-            return redirect()->route('home.slider')->with('success', 'Slider updated successfully');
+            $notification = array(
+                'message' => 'Contact updated successfully',
+                'alert-type' => 'info'
+            );
+            return redirect()->route('home.slider')->with($notification);
         }else {
             Slider::findOrfail($id)->update([
                 'title' => $request->title,
                 'description' => $request->description,
             ]);
-            return redirect()->route('home.slider')->with('success', 'Slider updated successfully');
+            $notification = array(
+                'message' => 'Contact updated successfully',
+                'alert-type' => 'info'
+            );
+            return redirect()->route('home.slider')->with($notification);
         }
     }
 
@@ -84,6 +91,10 @@ class HomeController extends Controller
         $old_image = $image->image;
         unlink($old_image);
         Slider::findOrFail($id)->delete();
-        return redirect()->back()->with('success', 'Slider deleted successfully');
+        $notification = array(
+            'message' => 'Slider deleted successfully',
+            'alert-type' => 'error'
+        );
+        return redirect()->back()->with($notification);
     }
 }

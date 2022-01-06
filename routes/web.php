@@ -3,6 +3,7 @@
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\changePasswordController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomeController;
 use App\Models\User;
@@ -83,6 +84,22 @@ Route::get('/about/edit/{id}',[AboutController::class, 'editAbout']);
 Route::post('/about/update/{id}',[AboutController::class, 'updateAbout']);
 Route::get('/about/delete/{id}',[AboutController::class, 'deleteAbout']);
 //==================================
+
+// Admin Add Contact Route ==================
+Route::get('/admin/content',[ContactController::class, 'adminContact'])->name('admin.contact');
+Route::get('/admin/add/contact',[ContactController::class, 'addContact'])->name('add.contact');
+Route::post('/store/contact',[ContactController::class, 'storeContact'])->name('store.contact');
+Route::get('/contact/edit/{id}',[ContactController::class, 'editContact']);
+Route::post('/contact/update/{id}',[ContactController::class, 'updateContact']);
+Route::get('/contact/delete/{id}',[ContactController::class, 'deleteContact']);
+//Home Contact Page
+Route::get('/content',[ContactController::class, 'contact'])->name('contact');
+Route::post('/content/message',[ContactController::class, 'contactForm'])->name('contact.form');
+Route::get('/admin/message',[ContactController::class, 'adminMessage'])->name('admin.message');
+Route::get('/message/delete/{id}',[ContactController::class, 'deleteMessage']);
+
+//==================================
+
 // portfolio ALL Route ==================
 Route::get('/portfolio',[AboutController::class, 'portfolio'])->name('portfolio');
 
@@ -96,3 +113,11 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 })->name('dashboard');
 
 Route::get('/user/logout',[BrandController::class, 'logout'])->name('user.logout');
+
+// Change Password And User Profile
+Route::get('/user/password',[ChangePasswordController::class, 'changePassword'])->name('change.password');
+Route::post('/update/password',[ChangePasswordController::class, 'updatePassword'])->name('update.password');
+
+// Update Profile
+Route::get('/user/profile',[ChangePasswordController::class, 'showProfile'])->name('show.profile');
+Route::post('/update/profile',[ChangePasswordController::class, 'updateProfile'])->name('update.profile');
