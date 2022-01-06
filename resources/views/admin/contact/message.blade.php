@@ -5,14 +5,9 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="row">
-                        <div class="col-sm-6">
+                        <div class="col-sm-6 py-4">
                             <h4>Contact Message page</h4>
                         </div>
-{{--                        <div class="col-sm-6 pb-4">--}}
-{{--                            <a href="{{route('add.message')}}">--}}
-{{--                                <button class="btn btn-primary">Add Contact</button>--}}
-{{--                            </a>--}}
-{{--                        </div>--}}
                     </div>
                 </div>
 

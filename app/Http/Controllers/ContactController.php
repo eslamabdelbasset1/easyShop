@@ -9,12 +9,7 @@ use Illuminate\Support\Facades\DB;
 
 class ContactController extends Controller
 {
-//    public function index()
-//    {
-//        return view('contact');
-//    }
-
-     public function adminContact()
+    public function adminContact()
     {
         $contacts = Contact::all();
         return view('admin.contact.index', compact('contacts'));
@@ -76,6 +71,8 @@ class ContactController extends Controller
         $contacts = DB::table('contacts')->first();
         return view('pages.contact', compact('contacts'));
     }
+
+//    Store Contact Message
     public function contactForm(Request $request)
     {
         $validated = $request->validate([

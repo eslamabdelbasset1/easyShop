@@ -5,7 +5,12 @@
     <!-- ======= Breadcrumbs ======= -->
     <section id="breadcrumbs" class="breadcrumbs">
         <div class="container">
-
+            @if (session('success'))
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <strong>{{session('success')}}</strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            @endif
             <div class="d-flex justify-content-between align-items-center">
                 <h2>Contact</h2>
                 <ol>
@@ -16,12 +21,6 @@
 
         </div>
     </section><!-- End Breadcrumbs -->
-    @if (session('success'))
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-            <strong>{{session('success')}}</strong>
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-    @endif
     <!-- ======= Contact Section ======= -->
     <div class="map-section">
         <iframe style="border:0; width: 100%; height: 350px;" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12097.433213460943!2d-74.0062269!3d40.7101282!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xb89d1fe6bc499443!2sDowntown+Conference+Center!5e0!3m2!1smk!2sbg!4v1539943755621" frameborder="0" allowfullscreen></iframe>
@@ -32,7 +31,6 @@
             <div class="row justify-content-center" data-aos="fade-up">
 
                 <div class="col-lg-10">
-
                     <div class="info-wrap">
                         <div class="row">
                             <div class="col-lg-4 info">
@@ -58,12 +56,7 @@
                 </div>
 
             </div>
-            @if (session('success'))
-                <div class="alert alert-success alert-dismissible fade show" role="alert">
-                    <strong>{{session('success')}}</strong>
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
-            @endif
+
             <div class="row mt-5 justify-content-center" data-aos="fade-up">
                 <div class="col-lg-10">
                     <form action="{{route('contact.form')}}" method="POST">
