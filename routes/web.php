@@ -1,10 +1,12 @@
 <?php
 
+use App\Http\Controllers\AboutController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomeController;
 use App\Models\User;
+use App\Models\Multipicture;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
@@ -25,7 +27,9 @@ Route::get('/email/verify', function () {
 
 Route::get('/', function () {
     $brands = DB::table('brands')->get();
-    return view('home', compact('brands'));
+    $about = DB::table('home_abouts')->first();
+    $images = Multipicture::all();
+    return view('home', compact('brands', 'about', 'images'));
 }); //->middleware('check')
 
 //Category Route=================================
@@ -68,8 +72,20 @@ Route::get('/add/slider',[HomeController::class, 'addSlider'])->name('add.slider
 Route::post('/store/slider',[HomeController::class, 'storeSlider'])->name('store.slider');
 Route::get('/slider/edit/{id}',[HomeController::class, 'editSlider']);
 Route::post('/slider/update/{id}',[HomeController::class, 'updateSlider']);
-Route::get('/slider/delete/{id}',[BrandController::class, 'deleteSlider']);
+Route::get('/slider/delete/{id}',[HomeController::class, 'deleteSlider']);
 //==================================
+
+// About ALL Route ==================
+Route::get('/home/About',[AboutController::class, 'homeAbout'])->name('home.about');
+Route::get('/add/About',[AboutController::class, 'addAbout'])->name('add.about');
+Route::post('/store/About',[AboutController::class, 'storeAbout'])->name('store.about');
+Route::get('/about/edit/{id}',[AboutController::class, 'editAbout']);
+Route::post('/about/update/{id}',[AboutController::class, 'updateAbout']);
+Route::get('/about/delete/{id}',[AboutController::class, 'deleteAbout']);
+//==================================
+// portfolio ALL Route ==================
+Route::get('/portfolio',[AboutController::class, 'portfolio'])->name('portfolio');
+
 
 Route::get('/contact',[ContactController::class, 'index']);
 
