@@ -33,4 +33,32 @@ class changePasswordController extends Controller
             return redirect()->back()->with('error', 'Current password is invalid');
         }
     }
+
+
+//    Update Profile
+    public function showProfile()
+    {
+        if (Auth::user())
+        {
+            $user = User::find(Auth::user()->id);
+            if ($user) {
+                return view('admin.body.update_profile', compact('user'));
+            }
+        }
+    }
+
+    public function updateProfile(Request $request)
+    {
+        $user = User::find(Auth::user()->id);
+        if ($user)
+        {
+           $user->name = $request['name'];
+           $user->email = $request['email'];
+
+           $user->save();
+           return redirect()->back()->with('success', 'User profile is updated successfully');
+        }else {
+            return redirect()->back();
+        }
+    }
 }
