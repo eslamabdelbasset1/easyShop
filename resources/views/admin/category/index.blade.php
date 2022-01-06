@@ -8,10 +8,10 @@
     <div class="py-12">
         <div class="container">
             <div class="row">
-                <div class="col-md-8">
+                <div class="col-md-9">
                     <div class="card">
                         @if (session('success'))
-                        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
                             <strong>{{session('success')}}</strong>
                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                         </div>
@@ -26,6 +26,7 @@
                         <th scope="col">Name</th>
                         <th scope="col">Email</th>
                         <th scope="col">Created At</th>
+                        <th scope="col">Action</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -34,7 +35,7 @@
                             <tr>
                                 <td scope="row">{{$categories->firstItem()+$loop->index}}</td>
                                 <td>{{$category->category_name}}</td>
-                                <td>{{$category->name}}</td>
+                                <td>{{$category->user->name}}</td>
                                 <td>
                                     @if ($category->created_at == null)
                                         <span class="text-danger">No data set</span>
@@ -42,6 +43,11 @@
                                         {{Carbon\Carbon::parse($category->created_at)->diffForHumans()}}
                                     @endif
                                 </td>
+                                <td>
+                                    <a href="{{url('category/edit/'.$category->id)}}" class="btn btn-info">Edit</a>
+                                    <a href="{{url('softDelete/category/'.$category->id)}}" class="btn btn-danger">Delete</a>
+                                </td>
+
                             </tr>
                         @endforeach
                     </tbody>
@@ -54,7 +60,7 @@
                     </div>
                 </div>
 
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <div class="card">
                         <div class="card-header">
                             Add Categories
@@ -73,6 +79,61 @@
                             </form>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+
+    {{--Trash Part--}}
+        <div class="container py-4">
+            <div class="row">
+                <div class="col-md-9">
+                    <div class="card ">
+                        <div class="card-header">
+                            Trash List
+                        </div>
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th scope="col">No</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Created At</th>
+                                <th scope="col">Action</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {{--                        @php($i = 1)--}}
+                            @foreach ( $trash_cat as $category)
+                                <tr>
+                                    <td scope="row">{{$trash_cat->firstItem()+$loop->index}}</td>
+                                    <td>{{$category->category_name}}</td>
+                                    <td>{{$category->user->name}}</td>
+                                    <td>
+                                        @if ($category->created_at == null)
+                                            <span class="text-danger">No data set</span>
+                                        @else
+                                            {{Carbon\Carbon::parse($category->created_at)->diffForHumans()}}
+                                        @endif
+                                    </td>
+                                    <td>
+                                        <a href="{{url('category/restore/'.$category->id)}}" class="btn btn-info">Restore</a>
+                                        <a href="{{url('empty/category/'.$category->id)}}" class="btn btn-dark">Empty</a>
+                                    </td>
+
+                                </tr>
+                            @endforeach
+                            </tbody>
+                            <tfoot>
+                            <tr>
+                                <td> {{$trash_cat->links()}}</td>
+                            </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+
                 </div>
             </div>
         </div>
