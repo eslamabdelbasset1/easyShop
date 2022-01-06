@@ -83,6 +83,18 @@ Route::get('/about/edit/{id}',[AboutController::class, 'editAbout']);
 Route::post('/about/update/{id}',[AboutController::class, 'updateAbout']);
 Route::get('/about/delete/{id}',[AboutController::class, 'deleteAbout']);
 //==================================
+
+// Admin Add Contact Route ==================
+Route::get('/admin/content',[ContactController::class, 'adminContact'])->name('admin.contact');
+Route::get('/admin/add/contact',[ContactController::class, 'addContact'])->name('add.contact');
+Route::post('/store/contact',[ContactController::class, 'storeContact'])->name('store.contact');
+Route::get('/contact/edit/{id}',[ContactController::class, 'editContact']);
+Route::post('/contact/update/{id}',[ContactController::class, 'updateContact']);
+Route::get('/contact/delete/{id}',[ContactController::class, 'deleteContact']);
+//Home Contact Page
+Route::get('/content',[ContactController::class, 'contact'])->name('contact');
+//==================================
+
 // portfolio ALL Route ==================
 Route::get('/portfolio',[AboutController::class, 'portfolio'])->name('portfolio');
 
