@@ -37,7 +37,12 @@ class ContactController extends Controller
             'phone' => $request->phone,
             'address' => $request->address,
         ]);
-        return redirect()->route('admin.contact')->with('success', 'Contact inserted successfully');
+
+        $notification = array(
+            'message' => 'Contact inserted successfully',
+            'alert-type' => 'success'
+        );
+        return redirect()->route('admin.contact')->with($notification);
     }
 
     public function editContact($id)
@@ -54,14 +59,22 @@ class ContactController extends Controller
             'address' => $request->address,
         ]);
 
-        return redirect()->route('admin.contact')->with('success', 'Contact updated successfully');
+        $notification = array(
+            'message' => 'Contact updated successfully',
+            'alert-type' => 'success'
+        );
+        return redirect()->route('admin.contact')->with($notification);
     }
 
     // Delete Contact
     public function deleteContact($id)
     {
         Contact::findOrFail($id)->delete();
-        return redirect()->back()->with('success', 'Contact deleted successfully');
+        $notification = array(
+            'message' => 'Contact deleted successfully',
+            'alert-type' => 'error'
+        );
+        return redirect()->back()->with($notification);
     }
 
 
@@ -94,7 +107,11 @@ class ContactController extends Controller
             'subject' => $request->subject,
             'message' => $request->message,
         ]);
-        return redirect()->route('contact')->with('success', 'Your message send successfully');
+        $notification = array(
+            'message' => 'Your message send successfully',
+            'alert-type' => 'info'
+        );
+        return redirect()->route('contact')->with($notification);
     }
 
     //  Contact Message page
@@ -107,6 +124,10 @@ class ContactController extends Controller
     public function deleteMessage($id)
     {
         ContactForm::findOrFail($id)->delete();
-        return redirect()->back()->with('success', 'Message deleted successfully');
+        $notification = array(
+            'message' => 'Message deleted successfully',
+            'alert-type' => 'error'
+        );
+        return redirect()->back()->with($notification);
     }
 }

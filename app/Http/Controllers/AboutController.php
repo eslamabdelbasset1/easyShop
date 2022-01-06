@@ -60,15 +60,22 @@ class AboutController extends Controller
             'short_desc' => $request->short_desc,
             'long_desc' => $request->long_desc,
             ]);
-
-            return redirect()->route('home.about')->with('success', 'About updated successfully');
+            $notification = array(
+                'message' => 'About updated successfully',
+                'alert-type' => 'success'
+            );
+            return redirect()->route('home.about')->with($notification);
     }
 
     // Delete Brand
     public function deleteAbout($id)
     {
         HomeAbout::findOrFail($id)->delete();
-        return redirect()->back()->with('success', 'About deleted successfully');
+        $notification = array(
+            'message' => 'About deleted successfully',
+            'alert-type' => 'error'
+        );
+        return redirect()->back()->with($notification);
     }
 
 

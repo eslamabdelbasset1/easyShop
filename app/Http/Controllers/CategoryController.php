@@ -49,7 +49,11 @@ class CategoryController extends Controller
 //        $data[user_id] = Auth::user()->id;
 //        DB::table('categories')->insert($data);
 
-        return redirect()->back()->with('success', 'Category inserted successful');
+        $notification = array(
+            'message' => 'Category inserted successfully',
+            'alert-type' => 'success'
+        );
+        return redirect()->back()->with($notification);
     }
 
 // Edit Category
@@ -73,7 +77,11 @@ class CategoryController extends Controller
 //        $data['user_id'] = Auth::user()->id;
 //        DB::table('categories')->where('id', $id)->update($data);
 
-        return redirect()->route('all_categories')->with('success', 'Category updated successfully');
+        $notification = array(
+            'message' => 'Category updated successfully',
+            'alert-type' => 'success'
+        );
+        return redirect()->route('all_categories')->with($notification);
     }
 
 
@@ -81,19 +89,31 @@ class CategoryController extends Controller
     public function softDelete($id)
     {
         $delete= Category::find($id)->delete();
-        return redirect()->back()->with('success', 'Category soft deleted successfully');
+        $notification = array(
+            'message' => 'Category soft deleted successfully',
+            'alert-type' => 'error'
+        );
+        return redirect()->back()->with($notification);
     }
     // Restore Category
     public function restore($id)
     {
         $delete= Category::withTrashed()->find($id)->restore();
-        return redirect()->back()->with('success', 'Category restore successfully');
+        $notification = array(
+            'message' => 'Category restore successfully',
+            'alert-type' => 'error'
+        );
+        return redirect()->back()->with($notification);
     }
     // Empty Category from database
     public function empty($id)
     {
         $delete= Category::onlyTrashed()->find($id)->forceDelete();
-        return redirect()->back()->with('success', 'Category Empty successfully from database');
+        $notification = array(
+            'message' => 'Category Empty successfully from database',
+            'alert-type' => 'warning'
+        );
+        return redirect()->back()->with($notification);
     }
 
 }
